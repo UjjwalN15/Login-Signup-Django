@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="full-body flex-center">
+        <div class="signupbox flex-center">
+            <h1 class="pointer">भित्र छिर</h1>
+            <div class="sliding-box sliding-box-signup">बाहुन काे खसी भित्र छ ।।।</div>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="email" name="username" id="username" placeholder="ईमेल राख" >
+                <input type="password" name="password" id="password" placeholder="पासवाेर्ड राख" >
+                <input type="submit" id="submit" value="आइज">
+            </form>
+            <p class="already pointer">रजिस्टर गरीनस् ? <a href="{% url 'signup'%}"> गर </a></p>
+            <div class="sliding-box sliding-box-signup ">ट्वाके प्रडक्सन</div>
+        </div>
+    </div>
+
+</body>
+</html>

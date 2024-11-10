@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<body>
+    <div class="full-body flex-center">
+        <div class="signupbox flex-center">
+            <h1 class="pointer">आइज</h1>
+            <div class="sliding-box sliding-box-signup">बाहुन काे खसी लुट्नुपर्छ।।।</div>
+            <form method="POST" onsubmit="return validateForm()">
+                {% csrf_token %}
+                <input type="email" name="username" id="username" placeholder="ईमेल राख" >
+                <input type="text" name="name" id="name" placeholder="नाम राख" >
+                <input type="password" name="password" id="password" placeholder="पासवाेर्ड राख" >
+                <input type="password" name="cpassword" id="cpassword" placeholder="पासवाेर्ड फेरि राख" >
+                <input type="submit" id="submit" value="आइज">
+            </form>
+            <p class="already pointer">रजिस्टर गरीस् ?<a href="{% url 'login' %}"> आइज</a></p>
+            <div class="sliding-box sliding-box-signup ">ट्वाके प्रडक्सन</div>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById("username").value;
+            const name = document.getElementById("name").value;
+            const password = document.getElementById("password").value;
+            const cpassword = document.getElementById("cpassword").value;
+
+            // Check if fields are empty
+            if (!username || !name || !password || !cpassword) {
+                alert("ठाउँ खाली नछाेड न मुजि");
+                return false;
+            }
+
+            // Check if password matches confirmation password
+            if (password !== cpassword) {
+                alert("पाखे एउटै पासवाेर्ड राख");
+                return false;
+            }
+
+            // Check password length and complexity
+            const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert("पासवर्ड कम्तीमा ८ अक्षरको हुनुपर्छ र यसमा नम्बर, अक्षर र विशेष प्रतीक समावेश हुनु पर्छ। तँ मुजि लाइ पासवाेर्ड राख्न आउदैन ?");
+                return false;
+            }
+
+            // If all checks pass
+            return true;
+        }
+    </script>
+</body>
+</html>
